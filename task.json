@@ -45,7 +45,7 @@
     },
     
     {
-      "name": "SQL Script",
+      "name": "scriptfile",
       "type": "filePath",
       "label": "Working Directory",
       "defaultValue": "",
