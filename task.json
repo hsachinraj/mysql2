@@ -1,0 +1,76 @@
+{
+  "id": "c9aec7b0-cf7b-11e5-8556-290bc0cc1879",
+  "name": "mysqldeployer",
+  "friendlyName": "MySQL Deployer",
+  "description": "Deploy MySQL database",
+  "author": "Sachin",
+  "helpMarkDown": "Replace with markdown to show in help",
+  "category": "Deploy",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "1",
+    "Patch": "0"
+  },
+  "minimumAgentVersion": "1.83.0",
+  "instanceNameFormat": "mysqldeployer $(message)",
+  "inputs": [
+        {
+      "name": "dbname",
+      "type": "string",
+      "label": "Database name",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Name of the database that you want to use or create"
+    },
+     {
+      "name": "username",
+      "type": "string",
+      "label": "User Name",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the name of the user that you want to use to connect to the database"
+    },
+    {
+      "name": "password",
+      "type": "string",
+      "label": "Password",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Password for the specified user"
+    },
+    
+    {
+      "name": "SQL Script",
+      "type": "filePath",
+      "label": "Working Directory",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "SQL scripts to be executed on the database"
+    },
+    {
+      "name": "createdb",
+      "type": "boolean",
+      "label": "Create Database",
+      "defaultValue": false,
+      "required": false,
+      "helpMarkDown": "Select this if you want to create the database",
+      "groupName": "Advanced"
+    }
+  ],
+  "execution": {
+    "Node": {
+      "target": "mysqldeploy.js",
+      "argumentFormat": ""
+    },
+    "PowerShell": {
+      "target": "$(currentDirectory)\\mysqldeploy.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
