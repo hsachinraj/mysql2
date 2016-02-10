@@ -21,26 +21,15 @@ var onError = function (errorMsg) {
 }
 var mysqlshell = tl.createToolRunner(tl.which('bash', true));
 
+//If database needs to be created, create the DB first
+//currently there is no check to see if DB already exists
 if (createdb)
 {
         var mysqlcmd = 'mysql -u '+username+' --password='+password+' -e \'create database '+dbname+'\'';
-       /* mysqlshell.arg(mysqlcmd);
-        mysqlshell.exec()
-        .then(function (code) {
-          // Executed successfully
-          tl.setResult(tl.TaskResult.Succeeded, tl.loc('BashReturnCode', code));
-        })
-        .fail(function (err) {
-          // Error executing
-          tl.debug('ToolRunner execution failure: ' + err);
-          tl.debug('Error creatinng db with command '+mysqlcmd);
-          tl.exit(1);
-        })
-        */
         var sys = require('sys')
 var exec = require('child_process').exec;
 var child;
-// executes `pwd`
+// create the database
 child = exec(mysqlcmd, function (error, stdout, stderr) {
   sys.print('stdout: ' + stdout);
   sys.print('stderr: ' + stderr);
@@ -55,7 +44,7 @@ var mysqlcmd2 = 'mysql -u '+username+' --password='+password+' -D '+dbname+' <'+
 var sys = require('sys')
 var exec = require('child_process').exec;
 var child;
-// executes `pwd`
+// execute the SQL Script using MySQL CMD
 child = exec(mysqlcmd2, function (error, stdout, stderr) {
   sys.print('stdout: ' + stdout);
   sys.print('stderr: ' + stderr);
@@ -63,17 +52,5 @@ child = exec(mysqlcmd2, function (error, stdout, stderr) {
     console.log('exec error: ' + error);
   }
 });
-/*mysqlshell.arg(mysqlcmd);
-mysqlshell.exec()
-.then(function (code) {
-    // Executed successfully
-    tl.setResult(tl.TaskResult.Succeeded, tl.loc('code', code));
-})
-.fail(function (err) {
-    // Error executing
-    tl.debug('ToolRunner execution failure: ' + err);
- //   tl.debug('Error Executing '+mysqlcmd);
-   // tl.exit(1);
-});
-*/
+
 
