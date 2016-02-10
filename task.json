@@ -10,7 +10,7 @@
     "Build",
     "Release"
   ],
-  "demands": [],
+ 
   "version": {
     "Major": "0",
     "Minor": "1",
@@ -58,8 +58,7 @@
       "label": "Create Database",
       "defaultValue": false,
       "required": false,
-      "helpMarkDown": "Select this if you want to create the database",
-      "groupName": "Advanced"
+      "helpMarkDown": "Select this if you want to create the database"
     }
   ],
   "execution": {
